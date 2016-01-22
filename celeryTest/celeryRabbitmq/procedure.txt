@@ -1,0 +1,5 @@
+	start the process worker by the command 
+celery -A tasks worker -l info 
+This is done in one terminal and left aside to see the logs.
+tasks - the python file where we have the celery app instance and the broker defined. The task to be scheduled is also defined as a function in the tasks module.
+The other caller module to schedule the tasks is called from other terminal window and the worker process is checked for any output.

@@ -1,0 +1,8 @@
+mount -rw -o remount /
+passwd pi
+
+# change the password on the prompt of enter new unix password.
+
+sync 
+exec /sbin/init
+sudo halt

@@ -11,6 +11,7 @@ def add(x, y):
 
 @celery.task
 def mul(x, y):
+    mul.delay(1,3)
     return x * y
 
 

@@ -1,0 +1,3 @@
+sudo raspi-config // for keyboard change layout and other configurations.. 
+sudo modprobe snd_bcm2836 // for loading the earphone module
+//one more command for sound configuration regarding alsa.

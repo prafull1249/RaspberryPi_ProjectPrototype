@@ -27,9 +27,9 @@ def get_data():
    return str
 
 @celery.task
-def get_cpufreq():
-    filep = open("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq","r")
-    str = filep.read(20)
-    print "The current frequency is ",str
-    return str 
+def get_cpufrequency():
+   fileptr = open("/sys/devices/system/cpu/cpu0/cpufreq","r")
+   str = fileptr.read(100)
+   print "The current frequency is ",str
+   return str
 

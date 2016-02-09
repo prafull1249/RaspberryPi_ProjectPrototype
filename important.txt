@@ -1,3 +1,20 @@
 sudo raspi-config // for keyboard change layout and other configurations.. 
 sudo modprobe snd_bcm2836 // for loading the earphone module
 //one more command for sound configuration regarding alsa.
+
+mysql password:myasu
+
+----------------------------------------------------------------------------
+
+connecting python with mysql
+The following dependencies must be installed first before going to the setup.py for mysql.
+
+sudo apt-get install python-dev
+sudo apt-get install libmysqlclient-dev
+To install MySQLdb module, download it from MySQLdb Download page and proceed as follows:
+
+$ gunzip MySQL-python-1.2.2.tar.gz
+$ tar -xvf MySQL-python-1.2.2.tar
+$ cd MySQL-python-1.2.2
+$ python setup.py build
+$ python setup.py install

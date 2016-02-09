@@ -1,0 +1,90 @@
+Various requests apis which facilitate the http callbacks(get,post,put,delete,head,options):
+
+
+>>> r = requests.get('https://api.github.com/events')
+>>> r = requests.post("http://httpbin.org/post", data = {"key":"value"})
+>>> r = requests.put("http://httpbin.org/put", data = {"key":"value"})
+>>> r = requests.delete("http://httpbin.org/delete")
+>>> r = requests.head("http://httpbin.org/get")
+>>> r = requests.options("http://httpbin.org/get")
+
+
+if we have to pass some data through the url for get or post request, what we can do is pass as a parameter just like the url string http://somehting.com/get?key1=value&key2=value2&key3=value3
+
+>>> payload = {'key1': 'value1', 'key2': 'value2'}
+>>> r = requests.get("http://httpbin.org/get", params=payload)
+
+if we print out the string by the following command, the url is translated in the format of above url mentioned.
+
+>>> print(r.url)
+http://httpbin.org/get?key1=value1&key2=value2&key2=value3
+
+access the encoding by the following command 
+>>> r.encoding()
+
+access the content of the response object buy the following: 
+>>> r.content()
+in json format 
+>>> r.json()
+in text format:
+>>> r.text
+
+to access the response object turned in binary format, we can use the library PIL and StringIO 
+>>> from PIL import image
+>>> from StringIO import StringIO
+>>> s = Image.open((StringIO(r.content)))
+
+to embed a json format file in the url in the request
+
+>>> url = 'https://api.github.com/some/endpoint'
+>>> payload = {'some': 'data'}
+
+>>> r = requests.post(url, json=payload)
+
+To get headers out of the response object tyr the following command : 
+>>> r.headers
+
+http headers are case insensitive. We can call a particular header by the following commands. Note the case insensitive property of the header
+
+>>> r.headers['Content-Type']
+'application/json'
+
+>>> r.headers.get('content-type')
+'application/json'
+
+if a response contains some Cookies, you can quickly access them:
+
+>>> url = 'http://example.com/some/cookie/setting/url'
+>>> r = requests.get(url)
+
+>>> r.cookies['example_cookie_name']
+'example_cookie_value'
+
+
+>>> url = 'http://httpbin.org/cookies'
+>>> cookies = dict(cookies_are='working')
+
+>>> r = requests.get(url, cookies=cookies)
+>>> r.text
+'{"cookies": {"cookies_are": "working"}}'
+
+
+we can tell the requests library to stop waiting for the response once a time limit is reached by specifying the timelimit in the timeout parameter.
+
+>>> requests.get('http://github.com', timeout=0.001)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
+
+The requests library timesout the waiting and this timeout does not have anything to do with the server response timeout.
+
+
+In the event of a network problem (e.g. DNS failure, refused connection, etc), Requests will raise a ConnectionError exception.
+
+In the rare event of an invalid HTTP response, Requests will raise an HTTPError exception.
+
+If a request times out, a Timeout exception is raised.
+
+If a request exceeds the configured number of maximum redirections, a TooManyRedirects exception is raised.
+
+All exceptions that Requests explicitly raises inherit from requests.exceptions.RequestException.

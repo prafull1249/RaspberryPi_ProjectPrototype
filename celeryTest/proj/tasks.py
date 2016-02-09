@@ -33,3 +33,24 @@ def get_cpufreq():
     print "The current frequency is ",str
     return str 
 
+@celery.task
+def get_inverter_data():
+    fo = open("/sys/class/simul/simul_char/temp","r")
+    f1 = open("/sys/class/simul/simul_char/health","r")
+    f2 = open("/sys/class/simul/simul_char/uptime","r")
+    f3 = open("/sys/class/simul/simul_char/turnswitch","r")
+    f4 = open("/sys/class/simul/simul_char/prod","r")
+    #fo = open("/dev/kmsg","r")
+    
+    str = fo.read(10)
+    print "Temp :",str
+    str = f1.read(10)
+    print "health :",str
+    str = f2.read(10)
+    print "uptime :",str
+    str = f3.read(10)
+    print "turnswitch :",str
+    str = f4.read(10)
+    print "prod :",str
+    fo.close()
+

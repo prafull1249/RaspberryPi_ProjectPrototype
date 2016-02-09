@@ -1,0 +1,17 @@
+apt-get install 0ypython-virtualenv
+apt-get install -y python-pip
+
+apt-get install -y openssh-server
+apt-get install -y nginx
+
+pip install django-fab-deploy
+
+apt-get install  -y build-essential python-dev libmysqlclient-dev
+
+pip install Django 
+pip install south
+pip install pillow
+pip install requests
+pip install gunicorn
+pip install mysql-python
+

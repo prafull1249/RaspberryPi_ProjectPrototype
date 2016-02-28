@@ -1,0 +1,15 @@
+create the project 
+create the appname by the startapp "" command
+create the first view by writing a fucntion returning httpresponse object in the views.py file in the application. 
+configure the urls in the urls.py in appname directory and then help make the necessary changes in the urls.py of the project indicating it to redirect the conttrol to urls.py of the application.
+Each model is represented by a class that subclasses django.db.models.Model. Each model has a number of class variables, each of which represents a database field in the model.
+
+python mange.py makemigrations appname - makes the migrations and the model.
+python manage.py sqlmigrate inverter 0001 -- makes the sql tables 
+
+
+Change your models (in models.py).
+Run python manage.py makemigrations to create migrations for those changes
+Run python manage.py migrate to apply those changes to the database.
+
+

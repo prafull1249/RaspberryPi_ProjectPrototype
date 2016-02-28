@@ -1,0 +1,3 @@
+commands set / request - protocol 
+Set commands and immediate requests.
+periodic things - 

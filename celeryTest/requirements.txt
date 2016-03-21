@@ -1,3 +1,6 @@
 commands set / request - protocol 
 Set commands and immediate requests.
 periodic things - 
+
+AIzaSyDe87TeZbkL-DN_CfttJGpYP-DhglaGz2k API Key
+

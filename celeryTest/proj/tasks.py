@@ -5,6 +5,15 @@ from proj.celery import celery
 import simplejson as json
 import requests
 
+#TCP/IP socket programming libraries for Modbus
+import sys
+#add logging capability
+import logging
+import modbus_tk
+import modbus_tk.defines as cst
+import modbus_tk.modbus_tcp as modbus_tcp
+
+
 @celery.task
 def add(x, y):
     return x + y
@@ -90,3 +99,22 @@ def getndump_inverter_data():
     #json_data = json.dumps(jsonobj)
     r = requests.get('http://127.0.0.1:8000/inverter/', params=jsonobj)
     str = getndump_inverter_data.delay()
+
+@celery.task(name='ASUi3dea.tasks.add')
+def add(x):
+    if x==1:
+	return "Successfully Turned on !!"
+    if x==0:
+	return "Successfully Turned off"
+
+@celery.task(name='ASUi3dea.tasks.pull_data')
+def pull_data(inverter_id):
+     master = modbus_tcp.TcpMaster()
+     master.set_timeout(5.0)
+     value = master.execute(1, cst.READ_HOLDING_REGISTERS, 100, 1)
+     dict = {}
+     dict['id'] = str(inverter_id)
+     dict['temperature'] = str(value[0])
+     jsonStr =  json.dumps(dict)
+     print(jsonStr)
+     return jsonStr

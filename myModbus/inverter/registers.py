@@ -1,3 +1,4 @@
+__author__ = 'Prafull'
 
 registers_holding = {
     #definition of blocks
@@ -57,4 +58,44 @@ registers_holding = {
 
 }
 
+Voltage = {
+    "range1" : 100,
+    "range2" : 200,
+    "start" : 40077,
+    "end" : 40082,
+    "SF" : 40083
+}
+
+Current = {
+    "range1" : 10,
+    "range2" : 20,
+    "start" : 40072,
+    "end" : 40075,
+    "SF" : 40076
+}
+
+Power = {
+    "range1" : 100,
+    "range2" : 200,
+    "start" : 40084,
+    "end" : 40084,
+    "SF" : 40085
+}
+
+Frequency = {
+    "range1" : 59.5,
+    "range2" : 60.5,
+    "start" : 40086,
+    "end" : 40086,
+    "SF" : 40087
+}
+
+
+type_registers = {
+
+    "Voltage" : Voltage,
+    "Current" : Current,
+    "Frequency" : Frequency,
+    "Power" : Power
+}
 

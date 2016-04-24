@@ -1,0 +1,40 @@
+  472  cd RaspberryPi_ProjectPrototype/
+  473  ls
+  474  cd celeryTest/
+  475  ls
+  476  cd ..
+  477  ls
+  478  cd ..
+  479  ls
+  480  cd ..
+  481  cd AsuVerizon/RaspberryPi_ProjectPrototype/
+  482  ls
+  483  mkdir messaging
+  484  ls
+  485  cd messaging/
+  486  ls
+  487  sudo apt-get install python-virtualenv
+  488  virtualenv --no-site-packages venv
+  489  source venv/bin/activate
+  490  ls
+  491  pip install celery
+  492  sudo apt-get install rabbitmq-server
+  493  sudo apt-get remove rabbitmq-server
+  494  sudo apt-get install rabbitmq-server
+  495  ls
+  496  cd venv/bin
+  514  vim tasks.py
+  515  celery worker -A tasks &
+  516  rabbitmqctl status
+  517  sudo rabbitmqctl status
+  518  ignore_result=Truels
+  519  sl
+  520  ls
+  521  sudo rabbitmqctl stop
+  522  sudo invoke-rc.d rabbitmq-server start
+  523  sudo rabbitmqctl stop
+  524  ps -ef
+  525  ps -ef | grep rabbit
+  526  sudo apt-get remove rabbitmq-server
+  527  sudo apt-get update
+start the server - sudo rabbitmq-server

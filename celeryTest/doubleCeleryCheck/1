@@ -70,15 +70,12 @@ def pull_values(id):
     dict['temperature'] = str(val_temp[0])
     dict['ACPower'] = str(val_ac_power[0])
     dict['DCPower'] = str(val_dc_power[0])
-    dict['lat'] = "33.3059398"
-    dict['lon'] = "-111.6792469"
-    dict['inverter'] = "1"
     return dict
 """ 
 @celery_i2.task(name='i2.pull_data')
 def pull_data(): 
     for i in range(0,12):
-        result = pull_values()
+        result = pull_values.s()
         result_v = result()
-        response = requests.post("http://129.219.216.202:8000/ASUi3dea/update/",params=result_v)
+        response = requests.post("http://10.143.222.82:8000/ASUi3dea/update/",params=result_v)
         time.sleep(10) 

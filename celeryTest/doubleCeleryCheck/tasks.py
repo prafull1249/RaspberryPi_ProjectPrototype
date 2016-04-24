@@ -21,6 +21,7 @@ def add(x):
         return "Successfully Turned off!! "
     #f3 = open("/sys/class/simul/simul_char/turnswitch","r")
     #return f3.read(10)
+'''
 
 @i2_app.task(name='i2.pull_data')
 def pull_values(id):
@@ -35,3 +36,51 @@ def pull_values(id):
      dict['current'] = str(value[0])
      value = master.execute(1, cst.READ_HOLDING_REGISTERS, 100, 1)        
      dict['quality'] = 'Good'
+'''
+
+@i2_app.task
+def pull_values():
+    master = modbus_tcp.TcpMaster("127.0.0.1")
+    master.set_timeout(5.0)
+
+    print "DC power read as follows" 
+    val_dc_power = master.execute(1, cst.READ_HOLDING_REGISTERS, 40101,2)
+    print val_dc_power[0]
+
+    print "AC Power read as follows" 
+    val_ac_power = master.execute(1, cst.READ_HOLDING_REGISTERS, 40084,2)
+    print val_ac_power[0]
+    
+    print "Status is as follows"
+    val_status = master.execute(1, cst.READ_HOLDING_REGISTERS, 40108,2)
+    print val_status[0]
+    
+    print "heatsink temperature is as follows"
+    val_temp = master.execute(1, cst.READ_HOLDING_REGISTERS, 40104,2)
+    print val_temp[0]
+    dict={}
+    
+    if val_status[0] == 2:
+        dict['status'] = "2"
+    elif val_status[0] == 1:
+        dict['status'] = "1"
+    else:
+        dict['status'] = "4"
+    
+    dict['temperature'] = str(val_temp[0])
+    dict['ACPower'] = str(val_ac_power[0])
+    dict['lat'] = "33.3059398"
+    dict['lon'] = "-111.6792469"
+    dict['inverter'] = "1"
+    dict['DCPower'] = str(val_dc_power[0])
+    return dict
+
+
+
+
+
+
+
+
+
+
